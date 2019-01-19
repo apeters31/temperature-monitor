@@ -10,23 +10,23 @@ def init(dirName):
 
 	## setup the display
 	# draw the plant image to the screen
-	imgFile = dirName + "/thermometer.oled"
-	if os.path.exists(imgFile):
-		status = oledExp.drawFromFile(imgFile)
+	# imgFile = dirName + "/thermometer.oled"
+	# if os.path.exists(imgFile):
+	#	status = oledExp.drawFromFile(imgFile)
 
 	## write the default text
 	# write the first word on the second line and the right side of the screen
 	oledExp.setTextColumns()
-	oledExp.setCursor(1,12)
+	oledExp.setCursor(0, 1)
 	oledExp.write('Temp:')
 
 # write out the soil moisture value
 def writeMeasurements(value):
 	# set the cursor the fifth line and the right side of the screen
 	oledExp.setTextColumns()
-	oledExp.setCursor(3,12)
+	oledExp.setCursor(line - 1, 1)
 	# write out the text
-	oledExp.write( str(value)  + " C" )
+	oledExp.write('%s: %.3f C' % (label[-6:-2], value))
 
 # clear the screen, write a message indicating no new measurements are coming in
 def setDoneScreen():
